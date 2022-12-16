@@ -85,7 +85,7 @@ function cardCreation(infoArray) {
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
-                    <a class="like-button ${infoArray.id ? 'liked-button' : ''} js-like-button" href="#">
+                    <a class="like-button ${infoArray.id ? 'liked-button--liked' : ''} js-like-button" href="#">
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
                     </a>
@@ -106,9 +106,33 @@ function date(currentDate) {
     return splitdate
 }
 
-const likeplus = []
+const button = document.querySelectorAll('.js-like-button')
+const likescounter = document.querySelectorAll('.js-likes-counter')
 
-let button = document.getElementsByClassName('.like-button')
+
+console.log(likescounter)
+
+for(i=0; i<button.length; i++) {
+    const likedpost = button[i]
+    const postcounter = likescounter[i]
+    likedpost.addEventListener('click', function(upbutton){
+        upbutton.preventDefault();
+        if(!likedpost.classList.contains('like-button--liked')) {
+            likedpost.classList.add('like-button--liked')
+            
+            const likenumber = parseInt(postcounter.innerHTML)
+            console.log(likenumber)
+            postcounter.innerHTML = likenumber + 1
+        }
+        else {
+            likedpost.classList.remove('like-button--liked')
+
+            const likenumber = parseInt(postcounter.innerHTML)
+            postcounter.innerHTML = likenumber - 1
+        }
+    })
+    
+}
 
 
 
