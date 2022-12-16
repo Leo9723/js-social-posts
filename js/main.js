@@ -70,7 +70,7 @@ function cardCreation(infoArray) {
         <div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                    <img class="profile-pic" src="${infoArray.author.image}" alt="${infoArray.author.name}">                    
+                    <img class="profile-pic" src="${infoArray.author.image /* ? imgAuthor(infoArray.author) : defaultImgAuthor(infoArray.author) */}" alt="${infoArray.author.name}">                    
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${infoArray.author.name}</div>
@@ -85,7 +85,7 @@ function cardCreation(infoArray) {
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
-                    <a class="like-button ${liked(infoArray.id) ? 'liked-button' : ''} js-like-button" href="#">
+                    <a class="like-button ${infoArray.id ? 'liked-button' : ''} js-like-button" href="#">
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
                     </a>
@@ -96,6 +96,14 @@ function cardCreation(infoArray) {
             </div> 
         </div>            
     </div>`
+}
+
+function date(currentDate) {
+    let splitdate = currentDate.split("-")
+    splitdate = splitdate.reverse('')
+    splitdate = splitdate.join('-')
+    console.log(splitdate)
+    return splitdate
 }
 
 const likeplus = []
